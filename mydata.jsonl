@@ -1,0 +1,240 @@
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "You need to identify flaky tests."
+    },
+    {
+      "role": "user",
+      "content": "Is this a flaky test? Only answer True or False.\n@pytest.mark.parametrize('trig, echo, offset, func_in, func_out', [(3, 4, 1, func_moved_in, func_moved_out)])\ndef test_observe(trig, echo, func_in, func_out, offset):\n    watch = Watch(gpio=GPIO, trig=trig, echo=echo, func_in=func_in, func_out=func_out, offset=offset)\n    watch.observe()\n    time.sleep(10)\n    watch.stop()\n    assert stack[-1].startswith('func_in_usage_') or stack[-1].startswith('func_out_usage_')"
+    },
+    {
+      "role": "assistant",
+      "content": "True"
+    }
+  ]
+}
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "You need to identify flaky tests."
+    },
+    {
+      "role": "user",
+      "content": "Is this a flaky test? Only answer True or False.\n@pytest.mark.parametrize('trig, echo, offset, func_in, func_out', [(3, 4, 1, func_moved_in, func_moved_out)])\ndef test_ping(trig, echo, func_in, func_out, offset):\n    watch = Watch(gpio=GPIO, trig=trig, echo=echo, func_in=func_in, func_out=func_out, offset=offset)\n    watch.ping()\n    assert stack[-1].startswith('func_in_usage_') or stack[-1].startswith('func_out_usage_')"
+    },
+    {
+      "role": "assistant",
+      "content": "True"
+    }
+  ]
+}
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "You need to identify flaky tests."
+    },
+    {
+      "role": "user",
+      "content": "Is this a flaky test? Only answer True or False.\n@pytest.mark.parametrize('version, result', [('9.8.7', True)])\ndef test_check_latest_version(conf, version, result):\n    response_obj = requests.Response()\n    response_obj.status_code = 200\n    response_obj.headers['Content-Type'] = 'application/json'\n    response_obj._content = json.dumps({'releases': {version: ''}}).encode()\n\n    with mock.patch('andriller.config.requests.get', return_value=response_obj):\n        conf.check_latest_version()\n        assert conf.update_available == result"
+    },
+    {
+      "role": "assistant",
+      "content": "True"
+    }
+  ]
+}
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "You need to identify flaky tests."
+    },
+    {
+      "role": "user",
+      "content": "Is this a flaky test? Only answer True or False.\n@pytest.mark.parametrize('id', ('MIT',))\ndef test_exisitng(id):\n    '''\n    Test that an existing license can be found\n    '''\n    assert licenraptor.find(id).id == id"
+    },
+    {
+      "role": "assistant",
+      "content": "True"
+    }
+  ]
+}
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "You need to identify flaky tests."
+    },
+    {
+      "role": "user",
+      "content": "Is this a flaky test? Only answer True or False.\n@pytest.mark.parametrize(\n    \"handler, exp_error\",\n    [(raise_timeout, TimeoutError)],\n)\ndef test_serverx_error(tcp_client, caplog, handler, exp_error):\n    host, port, client = tcp_client\n\n    thread = StoppableServerThread(host, port, handler, max_try=1)\n    thread.start()\n    time.sleep(0.3)  # wait while serve is starting\n\n    with caplog.at_level(logging.ERROR, logger=\"plcx.comm.server\"):\n        assert client(b\"test\", 4) is None\n        assert all([record.name == \"plcx.comm.server\" for record in caplog.records if record.filename == \"server.py\"])\n        assert all([issubclass(record.exc_info[0], exp_error) for record in caplog.records if record.filename == \"base_events.py\"])\n\n    thread.stop()\n    thread.join()"
+    },
+    {
+      "role": "assistant",
+      "content": "True"
+    }
+  ]
+}
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "You need to identify flaky tests."
+    },
+    {
+      "role": "user",
+      "content": "Is this a flaky test? Only answer True or False.\n@pytest.mark.parametrize(\n    \"handler, exp_error\",\n    [(raise_handler, AttributeError)],\n)\ndef test_serverx_error(tcp_client, caplog, handler, exp_error):\n    host, port, client = tcp_client\n\n    thread = StoppableServerThread(host, port, handler, max_try=1)\n    thread.start()\n    time.sleep(0.3)  # wait while serve is starting\n\n    with caplog.at_level(logging.ERROR, logger=\"plcx.comm.server\"):\n        assert client(b\"test\", 4) is None\n        assert all([record.name == \"plcx.comm.server\" for record in caplog.records if record.filename == \"server.py\"])\n        assert all([issubclass(record.exc_info[0], exp_error) for record in caplog.records if record.filename == \"base_events.py\"])\n\n    thread.stop()\n    thread.join()"
+    },
+    {
+      "role": "assistant",
+      "content": "True"
+    }
+  ]
+}
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "You need to identify flaky tests."
+    },
+    {
+      "role": "user",
+      "content": "Is this a flaky test? Only answer True or False.\n@pytest.mark.parametrize(\n    \"handler, exp_error\",\n    [(not_arg_handler, TypeError)],\n)\ndef test_serverx_error(tcp_client, caplog, handler, exp_error):\n    host, port, client = tcp_client\n\n    thread = StoppableServerThread(host, port, handler, max_try=1)\n    thread.start()\n    time.sleep(0.3)  # wait while serve is starting\n\n    with caplog.at_level(logging.ERROR, logger=\"plcx.comm.server\"):\n        assert client(b\"test\", 4) is None\n        assert all([record.name == \"plcx.comm.server\" for record in caplog.records if record.filename == \"server.py\"])\n        assert all([issubclass(record.exc_info[0], exp_error) for record in caplog.records if record.filename == \"base_events.py\"])\n\n    thread.stop()\n    thread.join()"
+    },
+    {
+      "role": "assistant",
+      "content": "True"
+    }
+  ]
+}
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "You need to identify flaky tests."
+    },
+    {
+      "role": "user",
+      "content": "Is this a flaky test? Only answer True or False.\n@pytest.mark.parametrize('data_dir', ['local'])\ndef test_init_with_exclude_arg(bids_layout, data_dir):\n    root = join(DIRNAME, 'data', '7t_trt')\n    config = join(DIRNAME, 'specs', 'test.json')\n    layout = Layout([(root, config)], regex_search=True, exclude='sub-\\d*')\n    target = join(root, \"dataset_description.json\")\n    assert target in bids_layout.files\n    assert target in layout.files\n    sub_file = join(root, \"sub-01\", \"sub-01_sessions.tsv\")\n    assert sub_file in bids_layout.files\n    assert sub_file not in layout.files"
+    },
+    {
+      "role": "assistant",
+      "content": "True"
+    }
+  ]
+}
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "You need to identify flaky tests."
+    },
+    {
+      "role": "user",
+      "content": "Is this a flaky test? Only answer True or False.\n@pytest.mark.parametrize('data_dir', ['local'])\ndef test_init_with_include_arg(bids_layout, data_dir):\n    root = join(DIRNAME, 'data', '7t_trt')\n    config = join(DIRNAME, 'specs', 'test.json')\n    layout = Layout([(root, config)], regex_search=True, include='sub-\\d*')\n    target = join(root, \"dataset_description.json\")\n    assert target in bids_layout.files\n    assert target not in layout.files\n    assert join(root, \"sub-01\", \"sub-01_sessions.tsv\") in layout.files\n    with pytest.raises(ValueError):\n        layout = Layout([(root, config)], include='sub-\\d*', exclude='meh')"
+    },
+    {
+      "role": "assistant",
+      "content": "True"
+    }
+  ]
+}
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "You need to identify flaky tests."
+    },
+    {
+      "role": "user",
+      "content": "Is this a flaky test? Only answer True or False.\n@pytest.mark.parametrize('data_dir', ['local'])\ndef test_natsort(bids_layout, data_dir):\n    result = bids_layout.get(target='subject', return_type='id')\n    assert result[:5] == list(map('%02d'.__mod__, range(1, 6)))"
+    },
+    {
+      "role": "assistant",
+      "content": "True"
+    }
+  ]
+}
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "You need to identify flaky tests."
+    },
+    {
+      "role": "user",
+      "content": "Is this a flaky test? Only return True or False.\n@pytest.mark.run('first')\ndef test_package_uninstall():\n    proc = run_process([sys.executable, '-m', 'pip', 'uninstall', '-q', '-q', '-y', 'tokendito'])\n    assert not proc['stderr']\n    assert proc['exit_status'] == 0"
+    },
+    {
+      "role": "assistant",
+      "content": "False"
+    }
+  ]
+}
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "You need to identify flaky tests."
+    },
+    {
+      "role": "user",
+      "content": "Is this a flaky test? Only return True or False.\n@pytest.mark.run('second')\ndef test_package_install():\n    repo_root = path.dirname(path.dirname(path.abspath(__file__)))\n    proc = run_process([sys.executable, '-m', 'pip', 'install', '-e', repo_root])\n    assert not proc['stderr']\n    assert proc['exit_status'] == 0"
+    },
+    {
+      "role": "assistant",
+      "content": "False"
+    }
+  ]
+}
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "You need to identify flaky tests."
+    },
+    {
+      "role": "user",
+      "content": "Is this a flaky test? Only return True or False.\ndef test_package_exists():\n    proc = run_process([sys.executable, '-m', 'pip', 'show', 'tokendito'])\n    assert not proc['stderr']\n    assert proc['exit_status'] == 0"
+    },
+    {
+      "role": "assistant",
+      "content": "False"
+    }
+  ]
+}
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "You need to identify flaky tests."
+    },
+    {
+      "role": "user",
+      "content": "Is this a flaky test? Only return True or False.\n@pytest.mark.run('second-to-last')\ndef test_generate_credentials(custom_args):\n    from tokendito import helpers, settings\n\n    tool_args = helpers.setup(custom_args)\n    helpers.process_ini_file(tool_args.config_file, 'default')\n    helpers.process_arguments(tool_args)\n    helpers.process_environment()\n\n    if settings.role_arn is None or settings.okta_aws_app_url is None or settings.mfa_method is None or not settings.okta_username or not settings.okta_password:\n        pytest.skip('Not enough arguments collected to execute non-interactively.')\n\n    args = [\n        '--role-arn', f'{settings.role_arn}',\n        '--okta-aws-app-url', f'{settings.okta_aws_app_url}',\n        '--mfa-method', f'{settings.mfa_method}',\n        '--mfa-response', f'{settings.mfa_response}',\n        '--username', f'{settings.okta_username}',\n        '--password', f'{settings.okta_password}'\n    ]\n    runnable = ['tokendito'] + args\n\n    proc = run_process(runnable)\n    assert not proc['stderr']\n    assert proc['exit_status'] == 0"
+    },
+    {
+      "role": "assistant",
+      "content": "False"
+    }
+  ]
+}
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "You need to identify flaky tests."
+    },
+    {
+      "role": "user",
+      "content": "Is this a flaky test? Only return True or False.\n@pytest.mark.run('last')\ndef test_aws_credentials(custom_args):\n    from tokendito import helpers, settings\n\n    tool_args = helpers.setup(custom_args)\n    helpers.process_ini_file(tool_args.config_file, 'default')\n    helpers.process_arguments(tool_args)\n    helpers.process_environment()\n\n    if settings.role_arn is None:\n        pytest.skip('No AWS profile defined, test will be skipped.')\n    profile = settings.role_arn.split('/')[-1]\n    runnable = ['aws', '--profile', profile, 'sts', 'get-caller-identity']\n    proc = run_process(runnable)\n    assert not proc['stderr']\n    assert proc['exit_status'] == 0"
+    },
+    {
+      "role": "assistant",
+      "content": "False"
+    }
+  ]
+}
