@@ -2,6 +2,12 @@
 
 ## Raw Data Files (All Created by Go_Through_IPFlakies.ipynb)
 - all_test_methods.csv: all accessible test methods in iPFlakies dataset
+  - Row: corresponding row number in https://sites.google.com/view/ipflakies (1-index)
+  - URL: URL to the python code file with the test method
+  - Class: class of the test method
+  - Test: test method name
+  - Content: test method
+  - Detected: whether the test method is detected as flaky
 - training_set.jsonl: un-balanced training set
 - balanced_training_set.jsonl: balanced training set by random undersampling
 - validation_set.jsonl: un-balanced validation set
