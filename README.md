@@ -1,7 +1,7 @@
-# Detection of NOD Flaky Tests with Fine-tuned LLM
+# Detection of Flaky Tests with Fine-tuned LLM
 
-## Raw Data Files (All Created by Go_Through_IFixFlakies.ipynb)
-- all_test_methods.csv: all accessible test methods in iFixFlakies dataset
+## Raw Data Files (All Created by Go_Through_IPFlakies.ipynb)
+- all_test_methods.csv: all accessible test methods in iPFlakies dataset
 - training_set.jsonl: un-balanced training set
 - balanced_training_set.jsonl: balanced training set by random undersampling
 - validation_set.jsonl: un-balanced validation set
