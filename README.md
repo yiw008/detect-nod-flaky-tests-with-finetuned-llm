@@ -21,4 +21,4 @@
 ## Notebooks
 - Go_Through_IFixFlakies.ipynb: creating raw data files
 - Naive_GPT_4o_mini.ipynb: predicting test methods in test_set.jsonl by naive GPT-4o mini
-- Finetuned_GPT_4o_mini.ipynb: predicting test methods in test_set.jsonl by finetuned GPT-4o mini, finetuning by training_set.jsonl
+- Finetuned_GPT_4o_mini.ipynb: finetuning GPT-4o mini with training_set.jsonl & predicting test methods in test_set.jsonl by finetuned GPT-4o mini
