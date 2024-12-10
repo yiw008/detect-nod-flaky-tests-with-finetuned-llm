@@ -16,7 +16,7 @@
 - data: data needed for testing 10 projects
   - For each project _p_:
     - test_set.jsonl: containing all the test methods of _p_
-    - training_set.jsonl: constructed from test methods of the other 9 projects (balanced after random oversampling)
+    - training_set.jsonl: constructed from test methods in the other 9 projects (balanced after random oversampling)
 
 ## Notebooks
 - Go_Through_IFixFlakies.ipynb: creating raw data files
