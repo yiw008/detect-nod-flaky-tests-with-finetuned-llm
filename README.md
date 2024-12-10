@@ -3,7 +3,7 @@
 ## Raw Data Files (All Created by Go_Through_IPFlakies.ipynb)
 - all_test_methods.csv: all accessible test methods in the iPFlakies dataset
 - selected_methods.csv: test methods of 10 selected projects in the iPFlakies dataset
-- refined_selected_methods.csv: test methods of 10 selected projects in iPFlakies dataset & test methods of 10 selected projects not recorded in iPFlakies dataset (assumed as non-flaky tests)
+- refined_selected_methods.csv: all the test methods in selected_methods.csv + augmented test methods of 10 selected projects not recorded in iPFlakies dataset (assumed as non-flaky tests)
   - Row: corresponding row number in https://sites.google.com/view/ipflakies (1-index)
     - -1: augmented when grabbing assumed non-flaky tests not recorded in the iPFlakies dataset
   - Project_Name: name of the project with the test method
