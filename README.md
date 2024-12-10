@@ -1,4 +1,4 @@
-# Detection of Flaky Tests with Fine-tuned LLM
+# Evaluating Fine-tuned Generative LLM on Detection of Flaky Tests
 
 ## Raw Data Files (All Created by Go_Through_IPFlakies.ipynb)
 - all_test_methods.csv: all accessible test methods in the iPFlakies dataset
