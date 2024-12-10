@@ -9,7 +9,7 @@
   - Project_Name: name of the project with the test method
   - URL: URL to the Python code file with the test method (usually copied from the iPFlakies dataset)
   - New URL: URL to the raw Python code file with the exact test method (so we can directly extract the test code from this URL)
-  - Class: class of the test method
+  - Class: class of the test method (if applicable)
   - Test: test method name
   - Content: test method
   - Detected: whether the test method is detected as flaky
